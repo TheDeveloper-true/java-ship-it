@@ -24,7 +24,4 @@ public class PerishableParcel extends Parcel {
         return BASE_COST;
     }
 
-    public int calculateDeliveryCost() {
-        return super.calculateDeliveryCost(BASE_COST);
-    }
 }

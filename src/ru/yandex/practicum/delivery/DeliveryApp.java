@@ -8,7 +8,7 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
-    private static List<Trackable> trackablePArcels = new ArrayList<>();
+    private static List<Trackable> trackableParcels = new ArrayList<>();
     private static ParcelBox<StandartParcel> standartParcelBox = new ParcelBox<>(100);
     private static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>(50);
     private static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>(20);
@@ -68,26 +68,25 @@ public class DeliveryApp {
         String adress = scanner.nextLine();
         System.out.println("Введите сегодняшний день месяца :");
         byte day = Byte.parseByte(scanner.nextLine());
+        Parcel parcel = null;
         switch (type) {// Подсказка: спросите тип посылки и необходимые поля, создайте объект и добавьте в allParcels
             case 1:
-                StandartParcel standartParcel = new StandartParcel(description, weight, adress, day);
-                allParcels.add(standartParcel);
-                standartParcelBox.addParcel(standartParcel);
+                parcel = new StandartParcel(description, weight, adress, day);
+                standartParcelBox.addParcel(parcel);
                 break;
             case 2:
-                FragileParcel fragileParcel = new FragileParcel(description, weight, adress, day);
-                allParcels.add(fragileParcel);
-                trackablePArcels.add(fragileParcel);
-                fragileParcelBox.addParcel(fragileParcel);
+                parcel = new FragileParcel(description, weight, adress, day);
+                trackableParcels.add(parcel);
+                fragileParcelBox.addParcel(parcel);
                 break;
             case 3:
                 System.out.println("Введите срок годности посылки :");
                 byte timeToLive = Byte.parseByte(scanner.nextLine());
-                PerishableParcel perishableParcel = new PerishableParcel(description, weight, adress, day, timeToLive);
-                allParcels.add(perishableParcel);
-                perishableParcelBox.addParcel(perishableParcel);
+                parcel = new PerishableParcel(description, weight, adress, day, timeToLive);
+                perishableParcelBox.addParcel(parcel);
                 break;
         }
+        allParcels.add(parcel);
     }
 
     private static void sendParcels() {
@@ -108,7 +107,7 @@ public class DeliveryApp {
     }
 
     private  static void trackParcel() {
-        for (Trackable p : trackablePArcels) {
+        for (Trackable p : trackableParcels) {
             System.out.println("Введите новую локацию посылки");
             p.reportStatus(scanner.nextLine());
         }

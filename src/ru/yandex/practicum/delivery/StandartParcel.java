@@ -12,7 +12,4 @@ public class StandartParcel extends  Parcel{
         return BASE_COST;
     }
 
-    public int calculateDeliveryCost() {
-        return super.calculateDeliveryCost(BASE_COST);
-    }
 }
