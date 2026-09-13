@@ -54,8 +54,6 @@ public class DeliveryApp {
         System.out.println("0 — Завершить");
     }
 
-    // реализуйте методы ниже
-
     private static void addParcel() {
         System.out.println("Какой тип посылки вы хотите отправить?");
         System.out.println("Обычная - 1");
